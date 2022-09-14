@@ -11,4 +11,24 @@ SELECT *
 FROM PYPL
 """
 ```
+![PYPL](/Images/pypl.PNG)
 
+Here we join the 4 ETF's in order to analze their daily returns.
+```
+query = """
+SELECT *
+FROM GDOT
+INNER JOIN GS
+    ON GS.time = GDOT.time
+INNER JOIN PYPL
+    ON PYPL.time = GDOT.time
+INNER JOIN SQ
+    ON SQ.time = GDOT.time
+"""
+etf_portfolio = pd.read_sql(query, con=engine)
+```
+![what_a_mess](/Images/mess.PNG)
+
+## Analysis
+The cumulative daily return for the entire portfolio are calculated and graphed.
+![cumulative](/Images/cumulative.PNG)
